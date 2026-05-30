@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "bkit-pdca": {
+      "command": "node",
+      "args": ["${CLAUDE_PROJECT_DIR}/.claude/bkit-plugin/servers/bkit-pdca-server/index.js"],
+      "env": {}
+    },
+    "bkit-analysis": {
+      "command": "node",
+      "args": ["${CLAUDE_PROJECT_DIR}/.claude/bkit-plugin/servers/bkit-analysis-server/index.js"],
+      "env": {}
+    }
+  }
+}
