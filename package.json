@@ -1,0 +1,26 @@
+{
+  "name": "talkdeal-strategy-master",
+  "version": "0.1.0",
+  "private": true,
+  "description": "톡딜 전략 마스터 — 카카오톡딜 판매자를 위한 관계형 커머스 전략 SaaS MVP",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "^16.2.6",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.41",
+    "@types/react": "^19.2.15",
+    "@types/react-dom": "^19.2.3",
+    "autoprefixer": "^10.5.0",
+    "postcss": "^8.5.15",
+    "tailwindcss": "^3.4.14",
+    "typescript": "^5.9.3"
+  }
+}
