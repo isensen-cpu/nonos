@@ -23,20 +23,22 @@
 | **05** | **[구글맵 상위노출 세팅](05-google-maps-gbp.md)** | **핵심 — 투입 대비 효과가 가장 큰 작업** |
 | 06 | [콘텐츠·리뷰 운영](06-content-ops.md) | 주 2시간으로 굴러가는 루틴 |
 | 07 | [측정 체계](07-measurement.md) | 무엇을 보고 성패를 판단할지 |
+| **08** | **[복합 업종 + 신규 등록 실행서](08-multi-vertical-gbp.md)** | 북미 한인 상권 / 여러 업종 결합 / GBP 미등록 / 웹사이트 없음 조건 전용 |
 
 체크리스트: [GBP 세팅](checklists/gbp-setup-checklist.md) · [NAP 일관성](checklists/nap-consistency.md) · [사진 규격](checklists/photo-specs.md)
 
 ## 빠른 시작
 
 ```bash
-# 1) 사업장 정보 작성
-cp data/business.profile.example.json data/business.profile.json
-#    → businessName, city, services, coreTerms, excludeTerms 를 실제 값으로
+# 1) 사업장 정보 작성 (data/business.profile.json 의 <> 부분을 채운다)
+#    verticals 배열의 맨 앞 = 매출 1순위 업종
 
-# 2) Google Keyword Planner CSV를 data/keywords/ 에 넣고
-node tools/seo/score-keywords.mjs
+# 2) 씨앗 키워드 생성 → 키워드 플래너에 붙여넣을 묶음이 만들어진다
+npm run seo:seeds
+cat data/keywords/seeds/README.md
 
-# 3) 결과 확인
+# 3) 플래너에서 받은 CSV를 data/keywords/ 에 넣고 점수화
+npm run seo:score
 cat data/keywords/output/keyword-map.md
 
 # (데이터 없이 동작만 먼저 보고 싶으면 샘플로 실행)
@@ -46,7 +48,8 @@ node tools/seo/score-keywords.mjs --input data/keywords/samples --out /tmp/seo-o
 
 ## 실행 우선순위 — 시간이 없다면 이 순서로
 
-1. **`05-google-maps-gbp.md` STEP 2 (관련성 세팅)** — 1주, 전체 효과의 60%. 웹사이트 없어도 가능
-2. `02` + `03` — 키워드 실측·점수화. 1일
-3. `05` STEP 4 (리뷰·게시물) — 12주 누적
-4. `04` — 웹사이트가 있을 때만
+1. **`08-multi-vertical-gbp.md`** — 복합 업종이라면 여기부터. 기본 카테고리 1개를 정하는 것이 모든 것의 출발점
+2. **`05-google-maps-gbp.md` STEP 2 (관련성 세팅)** — 1주, 전체 효과의 60%. 웹사이트 없어도 가능
+3. `02` + `03` — 키워드 실측·점수화. 1일
+4. `05` STEP 4 (리뷰·게시물) — 12주 누적
+5. `04` — **웹사이트가 생긴 뒤에** 적용. 없으면 건너뛴다

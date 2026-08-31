@@ -5,8 +5,11 @@
   "type": "module",
   "description": "소상공인 구글 SEO · 구글맵 상위노출 키워드 기획 프로젝트",
   "scripts": {
+    "seo:seeds": "node tools/seo/make-seeds.mjs",
     "seo:score": "node tools/seo/score-keywords.mjs",
     "seo:score:sample": "node tools/seo/score-keywords.mjs --input data/keywords/samples --out data/keywords/output --profile data/business.profile.example.json"
   },
-  "engines": { "node": ">=18" }
+  "engines": {
+    "node": ">=18"
+  }
 }

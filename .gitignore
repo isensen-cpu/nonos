@@ -10,3 +10,6 @@ data/keywords/output/
 
 # 실제 사업장 정보 원본 CSV (용량 큼) — 필요 시 주석 해제
 # data/keywords/*.csv
+
+# 씨앗 키워드 산출물 (재생성 가능)
+data/keywords/seeds/

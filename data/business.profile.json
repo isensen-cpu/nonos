@@ -1,0 +1,60 @@
+{
+  "_comment": "실제 사업장 정보. <> 로 표시된 곳을 채우면 됩니다. 채운 뒤: npm run seo:seeds",
+  "_setup": "캐나다/북미 한인 상권 · 복합 업종 · GBP 미등록 · 웹사이트 없음",
+
+  "businessName": "<한글 상호 — 간판과 100% 동일하게>",
+  "businessNameEn": "<영문 상호 — 간판과 100% 동일하게>",
+  "brandTerms": ["<상호 줄임말이나 별칭이 있으면>"],
+
+  "verticals": ["food", "beauty", "retail", "education"],
+  "_verticalsNote": "사용 가능: food, beauty, retail, education, culture. 매출 1순위 업종을 배열 맨 앞에 두세요 — 기본 카테고리 선정 기준입니다.",
+
+  "businessType": "<주력 업종 한글 — 예: 한식당>",
+  "businessTypeEn": "<주력 업종 영문 — 예: Korean restaurant>",
+  "gbpPrimaryCategory": "<등록 화면에서 확정 후 기입 — 딱 1개>",
+  "gbpAdditionalCategories": [],
+
+  "locationType": "storefront",
+  "_locationTypeOptions": "storefront(매장형) | serviceArea(출장·주소 비공개) | hybrid — docs/seo/05-google-maps-gbp.md STEP 0",
+
+  "nap": {
+    "name": "<GBP에 등록할 상호 — businessName과 동일>",
+    "address": {
+      "street": "<번지·도로명>",
+      "city": "<City — 예: Port Moody>",
+      "region": "<Province — 예: BC>",
+      "postalCode": "<우편번호>",
+      "country": "CA"
+    },
+    "phone": "<+1-604-000-0000 형식으로 통일>"
+  },
+
+  "city": "<한글 도시명 — 예: 포트무디>",
+  "cityEn": "<영문 도시명 — 예: Port Moody>",
+  "region": "<BC 등>",
+  "nearbyCityPairs": [
+    { "city": "<인접 도시 한글>", "cityEn": "<인접 도시 영문>" },
+    { "city": "<광역 도시 한글 — 예: 밴쿠버>", "cityEn": "<광역 도시 영문 — 예: Vancouver>" }
+  ],
+  "nearbyCities": [],
+  "_nearbyNote": "nearbyCityPairs 는 씨앗 키워드 생성용(한/영 짝). nearbyCities 는 점수 산출기의 지역 인식용이며, seeds 실행 시 자동 반영해도 됩니다.",
+
+  "primaryLanguage": "en",
+  "_primaryLanguageNote": "타깃 고객의 주력 언어. 북미 상권에서 현지인 유치가 목표면 en, 교민 위주면 ko. 반대 언어 키워드에 1.15배 보정이 붙습니다.",
+
+  "services": [
+    { "ko": "<대표 상품·서비스 1>", "en": "<service 1>" },
+    { "ko": "<대표 상품·서비스 2>", "en": "<service 2>" },
+    { "ko": "<대표 상품·서비스 3>", "en": "<service 3>" }
+  ],
+
+  "coreTerms": ["korean", "한식", "한인", "k-"],
+  "_coreTermsNote": "우리 업종의 핵심 주제어. 이 단어가 들어간 검색은 관련성 0.65 이상으로 인정됩니다.",
+
+  "excludeTerms": ["채용", "구인", "알바", "job", "hiring", "franchise", "가맹", "레시피", "recipe", "만드는 법", "how to make"],
+  "_excludeTermsNote": "우리가 제공하지 않는 것 + 고객이 아닌 검색(구직·레시피). 관련성 0으로 자동 제외됩니다.",
+
+  "website": "",
+  "_websiteNote": "현재 없음. 구글맵부터 완성한 뒤 필요해지면 templates/next-seo/ 적용.",
+  "gbpUtm": "?utm_source=google&utm_medium=organic&utm_campaign=gbp"
+}

@@ -98,8 +98,10 @@ types/              # 공통 타입 (Order, Product ...)
 | 알고리즘 분석·기획·실행 문서 8종 | `docs/seo/` ([시작점](docs/seo/README.md)) |
 | 구글맵(GBP) 상위노출 세팅 실행서 | `docs/seo/05-google-maps-gbp.md` |
 | 즉시 실행 체크리스트 3종 | `docs/seo/checklists/` |
+| 씨앗 키워드 생성기 | `tools/seo/make-seeds.mjs` (`npm run seo:seeds`) |
 | 키워드 우선순위 산출기 | `tools/seo/score-keywords.mjs` (`npm run seo:score`) |
 | Next.js 기술 SEO 템플릿 | `templates/next-seo/` |
+| 복합 업종·신규 등록 실행서 | `docs/seo/08-multi-vertical-gbp.md` |
 | 사업장 단일 진실 원천 | `data/business.profile.json` |
 
 원칙:
