@@ -1,0 +1,54 @@
+{
+  "_comment": "이 파일을 data/business.profile.json 으로 복사한 뒤 실제 값으로 바꾸세요. 국내 매장이면 city를 '마포구', cityEn을 'Mapo-gu' 등으로 바꾸면 그대로 동작합니다.",
+
+  "businessName": "OO식당",
+  "businessNameEn": "OO Korean Restaurant",
+  "brandTerms": ["OO식당", "OO restaurant"],
+
+  "businessType": "한식당",
+  "businessTypeEn": "Korean restaurant",
+  "gbpPrimaryCategory": "Korean Restaurant",
+  "gbpAdditionalCategories": ["Restaurant", "Barbecue Restaurant", "Takeout Restaurant"],
+
+  "locationType": "storefront",
+  "_locationTypeOptions": "storefront | serviceArea | hybrid — docs/seo/05-google-maps-gbp.md STEP 0",
+
+  "nap": {
+    "name": "OO식당",
+    "address": {
+      "street": "000 St Johns St",
+      "city": "Port Moody",
+      "region": "BC",
+      "postalCode": "V3H 0A0",
+      "country": "CA"
+    },
+    "phone": "+1-604-000-0000"
+  },
+
+  "city": "포트무디",
+  "cityEn": "Port Moody",
+  "region": "BC",
+  "nearbyCities": ["코퀴틀람", "Coquitlam", "버나비", "Burnaby", "밴쿠버", "Vancouver"],
+
+  "primaryLanguage": "en",
+  "_primaryLanguageNote": "타깃 고객의 주력 언어. 반대 언어 키워드에 1.15배 보정이 붙습니다 (전환율 프리미엄).",
+
+  "services": [
+    { "ko": "김치찌개", "en": "kimchi jjigae" },
+    { "ko": "불고기", "en": "bulgogi" },
+    { "ko": "한식 바베큐", "en": "korean bbq" },
+    { "ko": "비빔밥", "en": "bibimbap" },
+    { "ko": "포장", "en": "takeout" },
+    { "ko": "배달", "en": "delivery" },
+    { "ko": "케이터링", "en": "catering" }
+  ],
+
+  "coreTerms": ["korean", "한식", "코리안", "k-food"],
+  "_coreTermsNote": "우리 업종의 핵심 주제어. 이 단어가 들어간 검색은 관련성 0.65 이상으로 인정됩니다.",
+
+  "excludeTerms": ["일식", "중식", "sushi", "ramen shop", "채용", "job", "알바", "franchise", "레시피", "만드는 법", "만들기", "how to make", "recipe"],
+  "_excludeTermsNote": "우리가 제공하지 않는 것 / 구직·레시피 등 고객이 아닌 검색. 관련성 0으로 자동 제외됩니다.",
+
+  "website": "https://example.com",
+  "gbpUtm": "?utm_source=google&utm_medium=organic&utm_campaign=gbp"
+}
