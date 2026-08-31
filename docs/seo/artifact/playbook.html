@@ -1,0 +1,846 @@
+<title>구글맵 상위노출 플레이북</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@300;400;500;600;700&display=swap">
+<style>
+  /* ─── 토큰: 라이트가 기본, 다크는 토큰만 재정의 ─────────────── */
+  :root {
+    --paper:    #EFF2F6;
+    --surface:  #FFFFFF;
+    --surface2: #F7F9FB;
+    --ink:      #16212C;
+    --ink2:     #3D4C5A;
+    --muted:    #6A7787;
+    --line:     #D8DFE7;
+    --line2:    #E8EDF2;
+    --accent:   #A8761F;
+    --accent-q: #8C6218;
+    --accent-w: #F5EAD4;
+    --good:     #2C6A4E;
+    --good-w:   #E2EFE8;
+    --crit:     #A6382A;
+    --crit-w:   #F7E5E1;
+    --shadow:   0 1px 2px rgba(22,33,44,.05), 0 8px 24px -14px rgba(22,33,44,.28);
+
+    --f-display: "Gowun Batang", "Nanum Myeongjo", Georgia, serif;
+    --f-body: "IBM Plex Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    --f-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+    --measure: 40rem;
+    --wide: 66rem;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:    #0F161D;
+      --surface:  #16202A;
+      --surface2: #1B2732;
+      --ink:      #E4EAF0;
+      --ink2:     #B3C0CC;
+      --muted:    #8698A8;
+      --line:     #2A3846;
+      --line2:    #223040;
+      --accent:   #D9A94F;
+      --accent-q: #E8BE69;
+      --accent-w: #2B2418;
+      --good:     #63A886;
+      --good-w:   #16281F;
+      --crit:     #E28270;
+      --crit-w:   #2E1B18;
+      --shadow:   0 1px 2px rgba(0,0,0,.4), 0 8px 24px -14px rgba(0,0,0,.7);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper:    #0F161D;
+    --surface:  #16202A;
+    --surface2: #1B2732;
+    --ink:      #E4EAF0;
+    --ink2:     #B3C0CC;
+    --muted:    #8698A8;
+    --line:     #2A3846;
+    --line2:    #223040;
+    --accent:   #D9A94F;
+    --accent-q: #E8BE69;
+    --accent-w: #2B2418;
+    --good:     #63A886;
+    --good-w:   #16281F;
+    --crit:     #E28270;
+    --crit-w:   #2E1B18;
+    --shadow:   0 1px 2px rgba(0,0,0,.4), 0 8px 24px -14px rgba(0,0,0,.7);
+    color-scheme: dark;
+  }
+
+  /* ─── 기본 ─────────────────────────────────────────────────── */
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--f-body);
+    font-size: 1.0625rem;
+    font-weight: 350;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    word-break: keep-all;
+  }
+  h1, h2, h3, h4 { text-wrap: balance; margin: 0; line-height: 1.3; }
+  p { margin: 0; }
+  a { color: var(--accent-q); text-underline-offset: .2em; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+  code, .mono { font-family: var(--f-mono); font-size: .875em; }
+
+  /* ─── 레이아웃 ─────────────────────────────────────────────── */
+  .wrap { max-width: var(--wide); margin: 0 auto; padding: 0 1.5rem; }
+  .col  { max-width: var(--measure); }
+  .band { padding: 4.5rem 0; border-top: 1px solid var(--line); }
+  .band--surface { background: var(--surface); }
+  .stack   { display: flex; flex-direction: column; gap: 1.25rem; }
+  .stack-l { display: flex; flex-direction: column; gap: 2.25rem; }
+  .stack-s { display: flex; flex-direction: column; gap: .6rem; }
+  .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1rem; }
+  .grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(13.5rem, 1fr)); gap: 1rem; }
+
+  /* ─── 타이포 ───────────────────────────────────────────────── */
+  .eyebrow {
+    font-family: var(--f-mono); font-size: .7rem; font-weight: 500;
+    letter-spacing: .14em; text-transform: uppercase; color: var(--accent-q);
+  }
+  h2 { font-family: var(--f-display); font-weight: 700; font-size: clamp(1.55rem, 3.2vw, 2.1rem); }
+  h3 { font-size: 1.08rem; font-weight: 600; letter-spacing: -.01em; }
+  h4 { font-size: .95rem; font-weight: 600; }
+  .lede { font-size: 1.15rem; color: var(--ink2); line-height: 1.7; }
+  .fine { font-size: .875rem; color: var(--muted); line-height: 1.65; }
+
+  /* ─── 상단 내비 ─────────────────────────────────────────────── */
+  .nav {
+    position: sticky; top: 0; z-index: 20;
+    background: var(--paper);
+    background: color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner { display: flex; align-items: center; gap: 1.5rem; height: 3.25rem; overflow-x: auto; scrollbar-width: none; }
+  .nav-inner::-webkit-scrollbar { display: none; }
+  .nav-mark { font-family: var(--f-mono); font-size: .72rem; letter-spacing: .1em; color: var(--accent-q); white-space: nowrap; font-weight: 500; }
+  .nav a {
+    font-size: .82rem; color: var(--ink2); text-decoration: none; white-space: nowrap;
+    padding: .2rem 0; border-bottom: 1.5px solid transparent;
+  }
+  .nav a:hover { color: var(--ink); border-bottom-color: var(--accent); }
+
+  /* ─── 히어로 ───────────────────────────────────────────────── */
+  .hero { padding: 4.5rem 0 3.5rem; }
+  .hero h1 {
+    font-family: var(--f-display); font-weight: 700;
+    font-size: clamp(2.1rem, 6vw, 3.5rem); letter-spacing: -.02em; margin-top: .9rem;
+  }
+  .hero-sub { margin-top: 1.25rem; font-size: 1.2rem; color: var(--ink2); line-height: 1.65; }
+  .thesis {
+    margin-top: 2.25rem; padding: 1.4rem 1.5rem;
+    background: var(--surface); border: 1px solid var(--line);
+    border-left: 3px solid var(--accent); border-radius: 3px; box-shadow: var(--shadow);
+  }
+  .thesis p + p { margin-top: .7rem; }
+  .hero-meta { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: .5rem 1.75rem; }
+  .hero-meta div { display: flex; flex-direction: column; }
+  .hero-meta dt { font-family: var(--f-mono); font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  .hero-meta dd { margin: .15rem 0 0; font-size: .95rem; font-weight: 500; }
+
+  /* ─── 카드 ─────────────────────────────────────────────────── */
+  .card {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 4px; padding: 1.35rem 1.4rem;
+  }
+  .band--surface .card { background: var(--surface2); }
+  .card-head { display: flex; align-items: baseline; justify-content: space-between; gap: .75rem; }
+
+  /* 통제 가능성 게이지 — 3요소 범례에서만 사용 */
+  .gauge { margin-top: 1rem; }
+  .gauge-row { display: flex; align-items: center; gap: .6rem; font-size: .78rem; color: var(--muted); }
+  .gauge-row + .gauge-row { margin-top: .35rem; }
+  .gauge-label { font-family: var(--f-mono); font-size: .68rem; letter-spacing: .06em; width: 4.5rem; flex: none; }
+  .gauge-track { flex: 1; height: 5px; background: var(--line2); border-radius: 3px; overflow: hidden; }
+  .gauge-fill { height: 100%; border-radius: 3px; background: var(--accent); }
+  .gauge-fill--none { background: var(--muted); opacity: .45; }
+  .gauge-fill--good { background: var(--good); }
+
+  /* ─── 칩 / 배지 ────────────────────────────────────────────── */
+  .chip {
+    display: inline-flex; align-items: center; gap: .3rem;
+    font-family: var(--f-mono); font-size: .68rem; font-weight: 500; letter-spacing: .06em;
+    padding: .18rem .5rem; border-radius: 3px; white-space: nowrap;
+  }
+  .chip--accent { background: var(--accent-w); color: var(--accent-q); }
+  .chip--good   { background: var(--good-w);   color: var(--good); }
+  .chip--crit   { background: var(--crit-w);   color: var(--crit); }
+  .chip--muted  { background: var(--line2);    color: var(--muted); }
+
+  /* ─── 표 ───────────────────────────────────────────────────── */
+  .tablebox { overflow-x: auto; border: 1px solid var(--line); border-radius: 4px; background: var(--surface); }
+  .band--surface .tablebox { background: var(--surface2); }
+  table { border-collapse: collapse; width: 100%; font-size: .9rem; min-width: 34rem; }
+  th, td { text-align: left; padding: .7rem .9rem; border-bottom: 1px solid var(--line2); vertical-align: top; }
+  thead th {
+    font-family: var(--f-mono); font-size: .68rem; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--muted); font-weight: 500; white-space: nowrap;
+    border-bottom: 1px solid var(--line);
+  }
+  tbody tr:last-child td { border-bottom: 0; }
+  .num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+  /* ─── 타임라인 ─────────────────────────────────────────────── */
+  .tl { position: relative; padding-left: 2.5rem; }
+  .tl::before { content: ""; position: absolute; left: .5rem; top: .5rem; bottom: .5rem; width: 1px; background: var(--line); }
+  .tl-item { position: relative; }
+  .tl-item + .tl-item { margin-top: 2rem; }
+  .tl-item::before {
+    content: ""; position: absolute; left: -2.32rem; top: .55rem;
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--accent); box-shadow: 0 0 0 4px var(--paper);
+  }
+  .band--surface .tl-item::before { box-shadow: 0 0 0 4px var(--surface); }
+  .tl-when { font-family: var(--f-mono); font-size: .72rem; letter-spacing: .08em; color: var(--accent-q); text-transform: uppercase; }
+  .tl-item h3 { margin-top: .2rem; }
+  .tl-item p { margin-top: .35rem; color: var(--ink2); font-size: .95rem; }
+
+  /* ─── 계산기 ───────────────────────────────────────────────── */
+  .calc { display: grid; grid-template-columns: minmax(0,1fr) minmax(0, 15rem); gap: 1.75rem; align-items: start; }
+  @media (max-width: 46rem) { .calc { grid-template-columns: 1fr; } }
+  .field { display: flex; flex-direction: column; gap: .3rem; }
+  .field + .field { margin-top: .95rem; }
+  .field label { font-size: .82rem; font-weight: 500; color: var(--ink2); display: flex; justify-content: space-between; gap: 1rem; }
+  .field-val { font-family: var(--f-mono); font-size: .78rem; color: var(--accent-q); font-variant-numeric: tabular-nums; }
+  input[type="number"], select {
+    font: inherit; font-size: .92rem; padding: .45rem .6rem;
+    background: var(--surface); color: var(--ink);
+    border: 1px solid var(--line); border-radius: 3px; width: 100%;
+  }
+  .band--surface input[type="number"], .band--surface select { background: var(--surface2); }
+  input[type="range"] { width: 100%; accent-color: var(--accent); }
+  .switch { display: flex; align-items: center; gap: .5rem; font-size: .85rem; color: var(--ink2); margin-top: .95rem; }
+  .readout {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 4px;
+    padding: 1.4rem; text-align: center; box-shadow: var(--shadow);
+    position: sticky; top: 4.5rem;
+  }
+  .band--surface .readout { background: var(--surface2); }
+  .readout-score {
+    font-family: var(--f-mono); font-weight: 500; font-size: 3.1rem; line-height: 1;
+    font-variant-numeric: tabular-nums; color: var(--accent-q);
+  }
+  .readout-tier { margin-top: .8rem; }
+  .readout-note { margin-top: .9rem; font-size: .8rem; color: var(--muted); line-height: 1.55; }
+  .formula {
+    margin-top: 1rem; font-family: var(--f-mono); font-size: .72rem; color: var(--muted);
+    line-height: 1.7; word-break: break-all;
+  }
+
+  /* ─── 체크리스트 ───────────────────────────────────────────── */
+  .checks { display: flex; flex-direction: column; gap: .1rem; }
+  .check {
+    display: flex; gap: .75rem; align-items: flex-start;
+    padding: .6rem .75rem; border-radius: 3px; cursor: pointer;
+    border: 1px solid transparent;
+  }
+  .check:hover { background: var(--surface2); border-color: var(--line2); }
+  .band--surface .check:hover { background: var(--surface); }
+  .check input { margin: .45rem 0 0; accent-color: var(--accent); flex: none; width: 1rem; height: 1rem; }
+  .check-body { flex: 1; min-width: 0; }
+  .check-title { font-size: .95rem; font-weight: 500; }
+  .check-how { font-size: .82rem; color: var(--muted); margin-top: .1rem; }
+  .check input:checked ~ .check-body .check-title { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--line); }
+  .progress { display: flex; align-items: center; gap: .85rem; margin-bottom: 1.25rem; }
+  .progress-track { flex: 1; height: 6px; background: var(--line2); border-radius: 3px; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--accent); border-radius: 3px; transition: width .25s ease; }
+  .progress-num { font-family: var(--f-mono); font-size: .8rem; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+  /* ─── 금지 목록 ────────────────────────────────────────────── */
+  .forbid { border: 1px solid var(--crit); border-radius: 4px; overflow: hidden; }
+  .forbid-head {
+    background: var(--crit-w); color: var(--crit);
+    padding: .8rem 1.1rem; font-weight: 600; font-size: .95rem;
+    display: flex; align-items: center; gap: .5rem;
+  }
+  .forbid ul { margin: 0; padding: 1rem 1.1rem 1.1rem 2.3rem; background: var(--surface); }
+  .band--surface .forbid ul { background: var(--surface2); }
+  .forbid li { font-size: .93rem; }
+  .forbid li + li { margin-top: .5rem; }
+  .forbid b { color: var(--crit); font-weight: 600; }
+
+  /* ─── 명령어 ───────────────────────────────────────────────── */
+  .cmds { display: flex; flex-direction: column; gap: .5rem; }
+  .cmd {
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: .3rem 1rem;
+    padding: .7rem .9rem; background: var(--surface); border: 1px solid var(--line); border-radius: 3px;
+  }
+  .band--surface .cmd { background: var(--surface2); }
+  .cmd code { color: var(--accent-q); font-weight: 500; font-size: .85rem; white-space: nowrap; }
+  .cmd span { font-size: .87rem; color: var(--ink2); }
+
+  .filemap { font-family: var(--f-mono); font-size: .78rem; line-height: 1.85; color: var(--ink2); overflow-x: auto; }
+  .filemap b { color: var(--ink); font-weight: 500; }
+  .filemap i { color: var(--muted); font-style: normal; }
+
+  ul.plain { margin: 0; padding-left: 1.15rem; }
+  ul.plain li + li { margin-top: .4rem; }
+
+  footer { padding: 3rem 0 4rem; border-top: 1px solid var(--line); }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+  }
+</style>
+
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <span class="nav-mark">SEO / GBP</span>
+    <a href="#algorithm">알고리즘</a>
+    <a href="#keywords">키워드</a>
+    <a href="#gbp">구글맵 세팅</a>
+    <a href="#multi">복합 업종</a>
+    <a href="#timeline">12주</a>
+    <a href="#checklist">체크리스트</a>
+    <a href="#run">실행</a>
+  </div>
+</nav>
+
+<header class="wrap hero">
+  <div class="col">
+    <div class="eyebrow">소상공인 로컬 검색 운영 체계</div>
+    <h1>구글맵 상위노출 플레이북</h1>
+    <p class="hero-sub">
+      검색량을 지어내지 않고, 순위를 조작하지 않고, 구글이 실제로 읽는 신호만 정확히 채워
+      로컬 검색에 잡히게 만드는 12주짜리 실행 체계입니다.
+    </p>
+  </div>
+
+  <div class="thesis col">
+    <p><strong>순위를 직접 바꾸는 API나 툴은 존재하지 않습니다.</strong> 우리가 하는 일은 구글이 읽는 신호를 정확하고 완전하게 채워, 알고리즘이 우리를 정답으로 고르게 만드는 것입니다.</p>
+    <p><strong>웹 검색과 구글맵은 다른 알고리즘입니다.</strong> 소상공인은 구글맵 쪽 투자수익이 압도적으로 큽니다. 웹사이트가 없어도 로컬 팩 진입은 가능합니다.</p>
+    <p><strong>효과는 4~12주 지연됩니다.</strong> 2주 만에 판단하면 반드시 잘못된 결정을 합니다.</p>
+  </div>
+
+  <dl class="hero-meta col">
+    <div><dt>주 소요 시간</dt><dd>60분</dd></div>
+    <div><dt>1주차 효과 비중</dt><dd>약 60%</dd></div>
+    <div><dt>판단 시점</dt><dd>12주</dd></div>
+    <div><dt>필요한 예산</dt><dd>0원</dd></div>
+  </dl>
+</header>
+
+<!-- ═══ 알고리즘 ═══════════════════════════════════════════════ -->
+<section class="band band--surface" id="algorithm">
+  <div class="wrap stack-l">
+    <div class="col stack">
+      <div class="eyebrow">01 — 알고리즘</div>
+      <h2>구글맵 순위를 만드는 것은 세 가지뿐입니다</h2>
+      <p class="lede">구글이 공식적으로 밝힌 로컬 랭킹 요소는 딱 세 개입니다. 전략은 여기서 자동으로 도출됩니다 — <strong>통제 가능하면서 즉효인 것을 먼저</strong> 채웁니다.</p>
+    </div>
+
+    <div class="grid3">
+      <div class="card">
+        <div class="card-head">
+          <h3>관련성</h3>
+          <span class="chip chip--accent">즉효</span>
+        </div>
+        <p class="fine" style="margin-top:.5rem">검색어와 우리 프로필이 얼마나 정확히 맞는가. 카테고리·서비스 항목·설명·속성이 전부 여기에 들어갑니다.</p>
+        <div class="gauge">
+          <div class="gauge-row"><span class="gauge-label">통제</span><span class="gauge-track"><span class="gauge-fill" style="width:100%"></span></span><span>가능</span></div>
+          <div class="gauge-row"><span class="gauge-label">속도</span><span class="gauge-track"><span class="gauge-fill" style="width:95%"></span></span><span>1주</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <h3>거리</h3>
+          <span class="chip chip--muted">고정</span>
+        </div>
+        <p class="fine" style="margin-top:.5rem">검색자 위치와 매장까지의 실제 거리. 조작할 수 없습니다. 허위 주소·가상 오피스 등록은 프로필 정지 사유입니다.</p>
+        <div class="gauge">
+          <div class="gauge-row"><span class="gauge-label">통제</span><span class="gauge-track"><span class="gauge-fill gauge-fill--none" style="width:8%"></span></span><span>불가</span></div>
+          <div class="gauge-row"><span class="gauge-label">속도</span><span class="gauge-track"><span class="gauge-fill gauge-fill--none" style="width:0%"></span></span><span>—</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <h3>인지도</h3>
+          <span class="chip chip--good">누적</span>
+        </div>
+        <p class="fine" style="margin-top:.5rem">그 지역에서 얼마나 알려진 곳인가. 리뷰 개수·평점·최신성, 웹 인용, 사용자 행동이 쌓여 만들어집니다.</p>
+        <div class="gauge">
+          <div class="gauge-row"><span class="gauge-label">통제</span><span class="gauge-track"><span class="gauge-fill gauge-fill--good" style="width:85%"></span></span><span>가능</span></div>
+          <div class="gauge-row"><span class="gauge-label">속도</span><span class="gauge-track"><span class="gauge-fill gauge-fill--good" style="width:25%"></span></span><span>12주</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col stack">
+      <h3>2024년 이후 달라진 것 — 기획에 반드시 반영</h3>
+      <ul class="plain">
+        <li><strong>Helpful Content가 코어 알고리즘에 통합</strong>되었습니다. 페이지 수를 늘리는 전략은 이제 역효과입니다. 적고 진짜 유용한 페이지가 이깁니다.</li>
+        <li><strong>INP가 FID를 대체</strong>해 상호작용 반응성이 실측됩니다.</li>
+        <li><strong>AI 개요가 상단을 차지</strong>하면서 정보성 키워드는 클릭이 나오지 않습니다. 반대로 "지금 가겠다/사겠다"는 로컬·거래 의도 키워드의 가치가 올랐습니다.</li>
+      </ul>
+      <p class="fine">→ 블로그 물량전이 아니라 로컬 세팅에 집중하는 것이 지금 맞는 전략입니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 키워드 ═════════════════════════════════════════════════ -->
+<section class="band" id="keywords">
+  <div class="wrap stack-l">
+    <div class="col stack">
+      <div class="eyebrow">02 — 키워드</div>
+      <h2>무엇부터 할지를 숫자로 정합니다</h2>
+      <p class="lede">감으로 키워드를 고르는 것이 소상공인 SEO 실패의 첫 번째 원인입니다. 실측 데이터를 넣으면 점수와 배치 위치가 나옵니다.</p>
+    </div>
+
+    <div class="col stack-s">
+      <h3>파이프라인</h3>
+      <div class="filemap">
+        <b>Google Keyword Planner</b> <i>(위치·언어 필터, 무료)</i><br>
+        &nbsp;&nbsp;↓ CSV 내보내기<br>
+        <b>data/keywords/*.csv</b> <i>(가공하지 않고 그대로)</i><br>
+        &nbsp;&nbsp;↓ npm run seo:score<br>
+        <b>점수화</b> <i>= 검색량 × 의도 × (1−경쟁도) × 관련성</i><br>
+        &nbsp;&nbsp;├→ Tier S·A &nbsp;<i>GBP 카테고리·설명·서비스 항목, 웹 타이틀</i><br>
+        &nbsp;&nbsp;├→ Tier B &nbsp;&nbsp;&nbsp;<i>게시물 12주 로테이션, 블로그 롱테일</i><br>
+        &nbsp;&nbsp;└→ Tier C &nbsp;&nbsp;&nbsp;<i>보류 · Google Ads 후보</i>
+      </div>
+    </div>
+
+    <div>
+      <h3 style="margin-bottom:1rem">점수 계산기</h3>
+      <div class="calc">
+        <div>
+          <div class="field">
+            <label for="c-vol">월평균 검색량 <span class="field-val" id="v-vol">100</span></label>
+            <input type="number" id="c-vol" value="100" min="0" step="10">
+            <p class="fine">플래너가 "100 – 1K" 같은 구간으로 준다면 <strong>하한값(100)</strong>을 넣습니다. 과대평가로 없는 수요에 투자하는 것을 막습니다.</p>
+          </div>
+          <div class="field">
+            <label for="c-max">기준 최대 검색량 <span class="field-val" id="v-max">1,000</span></label>
+            <input type="number" id="c-max" value="1000" min="1" step="100">
+            <p class="fine">내 데이터셋에서 가장 큰 검색량. 로그 정규화의 기준입니다.</p>
+          </div>
+          <div class="field">
+            <label for="c-comp">경쟁도 <span class="field-val" id="v-comp">50</span></label>
+            <input type="range" id="c-comp" value="50" min="0" max="100" step="1">
+          </div>
+          <div class="field">
+            <label for="c-intent">검색 의도</label>
+            <select id="c-intent">
+              <option value="1.0" selected>local — 지금 갈 곳을 찾음 (포트무디 한식당)</option>
+              <option value="0.95">transactional — 주문·예약 직전 (김치찌개 배달)</option>
+              <option value="0.8">commercial — 비교·검토 중 (한식당 추천)</option>
+              <option value="0.45">informational — 정보만 (김치찌개 만드는 법)</option>
+              <option value="0.35">brand — 상호 검색</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="c-rel">관련성 — 우리가 실제로 파는 것인가</label>
+            <select id="c-rel">
+              <option value="1">1.0 — 핵심 상품·서비스 그 자체</option>
+              <option value="0.9" selected>0.9 — 업종명이 일치</option>
+              <option value="0.65">0.65 — 핵심 주제어만 겹침</option>
+              <option value="0.3">0.3 — 간접적으로만 연결</option>
+              <option value="0">0 — 우리와 무관 (제외)</option>
+            </select>
+          </div>
+          <label class="switch"><input type="checkbox" id="c-lang"> 소수 언어 키워드 보정 (×1.15)</label>
+        </div>
+
+        <div class="readout" aria-live="polite">
+          <div class="eyebrow">우선순위 점수</div>
+          <div class="readout-score num" id="out-score">54</div>
+          <div class="readout-tier"><span class="chip chip--accent" id="out-tier">Tier A</span></div>
+          <p class="readout-note" id="out-note">GBP 서비스 항목 · 랜딩 페이지 1개씩 · 사진 파일명</p>
+          <div class="formula">100 × V′ × I × D′ × R × L</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col stack-s">
+      <h3>Tier가 배치 위치까지 정합니다</h3>
+      <div class="tablebox">
+        <table>
+          <thead><tr><th>Tier</th><th>점수</th><th>개수 목표</th><th>어디에 쓰는가</th></tr></thead>
+          <tbody>
+            <tr><td><span class="chip chip--accent">S</span></td><td class="num">70+</td><td class="num">3~5개</td><td>기본·보조 카테고리, 설명 첫 문장, 홈 타이틀</td></tr>
+            <tr><td><span class="chip chip--accent">A</span></td><td class="num">50–69</td><td class="num">8~12개</td><td>서비스 항목, 랜딩 페이지, 사진 파일명</td></tr>
+            <tr><td><span class="chip chip--muted">B</span></td><td class="num">30–49</td><td class="num">15~25개</td><td>게시물 주 1회 로테이션, 블로그 롱테일, FAQ</td></tr>
+            <tr><td><span class="chip chip--muted">C</span></td><td class="num">&lt; 30</td><td>나머지</td><td>보류 — Google Ads 후보로만 검토</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="fine"><strong>한 페이지 = 한 개의 S/A 키워드.</strong> 한 페이지에 여러 개를 욱여넣으면 어느 것으로도 잡히지 않습니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 구글맵 세팅 ════════════════════════════════════════════ -->
+<section class="band band--surface" id="gbp">
+  <div class="wrap stack-l">
+    <div class="col stack">
+      <div class="eyebrow">03 — 구글맵 세팅</div>
+      <h2>관련성을 1주 안에 100% 채웁니다</h2>
+      <p class="lede">전체 작업량의 20%로 효과의 60%가 나오는 구간입니다. 웹사이트가 없어도 단독으로 실행할 수 있습니다.</p>
+    </div>
+
+    <div class="grid2">
+      <div class="card stack-s">
+        <h3>카테고리 — 관련성 신호의 60%</h3>
+        <p class="fine">기본 카테고리는 <strong>1개만</strong> 가능합니다. 넓은 것(<code>Restaurant</code>)보다 <strong>좁고 정확한 것</strong>(<code>Korean Restaurant</code>)이 유리합니다. 보조는 최대 9개, 실제 제공하는 것만 — 관련 없는 카테고리는 기본의 관련성을 희석시킵니다.</p>
+      </div>
+      <div class="card stack-s">
+        <h3>서비스·메뉴 항목 — 가장 저평가된 기능</h3>
+        <p class="fine">각 항목이 <strong>검색 매칭 단위</strong>가 됩니다. 이름 + 가격 + 300자 설명으로 개별 등록하고, 최소 12개를 목표로 합니다. 복합 업종은 여기서 승부가 납니다.</p>
+      </div>
+      <div class="card stack-s">
+        <h3>비즈니스 설명 750자</h3>
+        <p class="fine"><strong>첫 100자</strong>에 Tier S 키워드와 도시명을 넣습니다(검색결과에서 잘리는 지점). 키워드 나열은 금지 — 사람이 읽는 문장이어야 합니다. 가격·URL·이메일은 넣으면 반려됩니다.</p>
+      </div>
+      <div class="card stack-s">
+        <h3>사진 20장</h3>
+        <p class="fine">JPG/PNG · 10KB~5MB · 권장 720×720 이상. 커버는 16:9. 외관은 <strong>낮/밤 각각</strong>. 파일명을 <code>도시-업종-대상-01.jpg</code> 영문으로 바꿔 올립니다 — 한글 파일명은 구글이 읽지 못합니다.</p>
+      </div>
+      <div class="card stack-s">
+        <h3>속성 · 영업시간</h3>
+        <p class="fine">주차·배달·예약·결제수단·한국어 응대는 <strong>필터 검색 노출에 직결</strong>됩니다. 뜨는 항목은 전부 채웁니다. 공휴일 예외 영업시간도 미리 등록합니다.</p>
+      </div>
+      <div class="card stack-s">
+        <h3>Q&amp;A 씨앗</h3>
+        <p class="fine">고객을 기다리지 않습니다. <strong>사장이 직접 질문을 올리고 직접 답변하는 것은 정책상 허용</strong>됩니다. 자주 받는 질문 5~8개를 2~3일 간격으로 등록합니다.</p>
+      </div>
+    </div>
+
+    <div class="col stack">
+      <h3>인지도 — 4~12주 누적</h3>
+      <div class="tablebox">
+        <table>
+          <thead><tr><th>신호</th><th>실행 기준</th></tr></thead>
+          <tbody>
+            <tr><td>리뷰 확보 속도</td><td>주 2~3개. 하루에 몰리면 스팸 필터에 걸립니다</td></tr>
+            <tr><td>답글률</td><td>100%. 1~2점은 <strong>24시간 내</strong>, 방어하지 말고 사과 → 조치 → 오프라인 연락처</td></tr>
+            <tr><td>리뷰 최신성</td><td>3개월 이상 공백은 감점 신호</td></tr>
+            <tr><td>리뷰 언어</td><td>한국어·영어가 <strong>둘 다</strong> 있어야 양쪽 검색에 잡힙니다</td></tr>
+            <tr><td>게시물</td><td>최소 주 1회. 사진 1장 + CTA 버튼 필수</td></tr>
+            <tr><td>NAP 인용</td><td>10곳 이상, 한 글자도 다르지 않게</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="col forbid">
+      <div class="forbid-head">프로필 정지로 이어지는 것 — 절대 하지 않습니다</div>
+      <ul>
+        <li><b>상호명에 키워드 끼워넣기</b> — 실제 간판과 동일해야 합니다. 정지 또는 상호 강제 수정</li>
+        <li><b>할인·사은품을 걸고 리뷰 요청</b> — 구글 리뷰 정책 위반, 리뷰 일괄 삭제</li>
+        <li><b>가짜 리뷰 / 지인 대량 리뷰</b> — 필터링 + 프로필 신뢰도 하락</li>
+        <li><b>운영하지 않는 주소·가상 오피스 등록</b> — 정지</li>
+        <li><b>지역명만 바꾼 복제 페이지 대량 생산</b> — Helpful Content 신호로 사이트 전체 하락</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 복합 업종 ══════════════════════════════════════════════ -->
+<section class="band" id="multi">
+  <div class="wrap stack-l">
+    <div class="col stack">
+      <div class="eyebrow">04 — 복합 업종</div>
+      <h2>업종이 여럿이면 정체성을 하나로 잡습니다</h2>
+      <p class="lede">구글은 하나의 사업장을 하나의 정체성으로 이해합니다. 음식·뷰티·리테일·교육을 동등하게 걸면 관련성이 4등분되어 <strong>어느 것으로도 상위에 잡히지 않습니다.</strong></p>
+    </div>
+
+    <div class="col stack-s">
+      <h3>결정 순서</h3>
+      <div class="filemap">
+        <b>Q1.</b> 지난 3개월 매출에서 가장 큰 업종은?<br>
+        &nbsp;&nbsp;↓<br>
+        그 업종의 <b>가장 좁고 정확한 카테고리 1개</b> = 기본 카테고리<br>
+        &nbsp;&nbsp;↓<br>
+        <b>Q2.</b> 나머지 업종은?<br>
+        &nbsp;&nbsp;├→ 각 업종의 카테고리를 <b>보조로</b> 등록 <i>(합쳐 최대 9개)</i><br>
+        &nbsp;&nbsp;├→ 각 업종의 상품을 <b>서비스 항목으로</b> 개별 등록 <i>← 진짜 승부처</i><br>
+        &nbsp;&nbsp;└→ 각 업종을 <b>게시물 로테이션에</b> 배치
+      </div>
+    </div>
+
+    <div class="col stack-s">
+      <h3>프로필을 나눠도 되는 경우</h3>
+      <p>아래 <strong>두 조건을 모두</strong> 충족할 때만 별도 프로필이 허용됩니다.</p>
+      <ul class="plain">
+        <li>법적으로 <strong>별개 사업자</strong>이고 (별도 사업자등록·별도 상호)</li>
+        <li>물리적으로 <strong>구분된 출입구·공간</strong>을 쓰며, 각각 <strong>전용 직원</strong>이 상주</li>
+      </ul>
+      <p class="fine">한 공간에서 사장 한 명이 여러 업종을 운영한다면 프로필은 하나입니다. 나누면 중복 프로필로 정지됩니다.</p>
+    </div>
+
+    <div class="col stack-s">
+      <h3>한 · 영 이중언어 운영</h3>
+      <div class="tablebox">
+        <table>
+          <thead><tr><th>항목</th><th>원칙</th></tr></thead>
+          <tbody>
+            <tr><td>상호명</td><td>실제 간판 그대로. 임의로 한글을 덧붙이지 않습니다</td></tr>
+            <tr><td>비즈니스 설명</td><td>주력 언어로 먼저 쓰고, 750자 안에서 자연스럽게 섞습니다. 번역문을 통째로 덧붙이지 않습니다</td></tr>
+            <tr><td>한국어 키워드</td><td>검색량이 작아도 버리지 않습니다 — 언어가 일치하는 고객은 전환율이 훨씬 높습니다</td></tr>
+            <tr><td>사진 파일명</td><td>반드시 영문</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 12주 ═══════════════════════════════════════════════════ -->
+<section class="band band--surface" id="timeline">
+  <div class="wrap stack-l">
+    <div class="col stack">
+      <div class="eyebrow">05 — 실행 순서</div>
+      <h2>웹사이트 없이 12주</h2>
+      <p class="lede">순서에는 이유가 있습니다. 앞 단계의 산출물이 뒤 단계의 입력이 되고, 효과가 큰 것이 앞에 있습니다.</p>
+    </div>
+
+    <div class="col tl">
+      <div class="tl-item">
+        <div class="tl-when">0주차 · 준비</div>
+        <h3>프로필 · 씨앗 키워드 · 촬영 계획</h3>
+        <p>사업장 정보를 입력하고 씨앗 키워드를 뽑습니다. 구글 광고 계정(무료)을 만들고 KPI 기준선을 기록합니다. <strong>기준선을 남기지 않으면 3개월 뒤 성과를 증명할 수 없습니다.</strong></p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">1주차 · 실측 + 등록</div>
+        <h3>키워드 플래너 CSV → 우선순위표, 그리고 소유권 확인</h3>
+        <p>플래너에서 지역·언어를 맞춰 조회하고 CSV를 받습니다. 동시에 프로필을 등록하고 소유권 확인 동영상을 촬영합니다 — 간판 → 주변 거리 → 출입구 → 내부 → 영업 도구 → 사업자 증빙을 <strong>끊김 없이 한 번에</strong>.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">2주차 · 관련성</div>
+        <h3>승인 당일에 몰아서 세팅</h3>
+        <p>승인까지 3~7일. 기다리는 동안 설명·서비스 항목 문구를 미리 씁니다. 승인 나면 카테고리·설명·서비스 12개·속성·사진·Q&amp;A를 한 번에 끝냅니다. <strong>여기까지가 전체 효과의 60%입니다.</strong></p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">3~8주차 · 콘텐츠</div>
+        <h3>게시물 주 1회, 사진 주 2~3장</h3>
+        <p>12주 로테이션 캘린더대로 돌립니다. 한 번에 몰아 올리지 않습니다 — 최신성 자체가 신호입니다.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">4~12주차 · 인지도</div>
+        <h3>리뷰 30개, NAP 인용 10곳</h3>
+        <p>결제 직후 QR로 요청 동선을 물리적으로 만듭니다. 부탁에 의존하지 않습니다. 답글은 100%.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">12주차 · 판단</div>
+        <h3>기준선과 비교하고, 그때 웹사이트를 결정</h3>
+        <p>GBP 인사이트에서 "웹사이트 클릭" 수요가 실제로 보일 때 만드는 것이 순서입니다. 지금 만들면 관리 대상만 늘어납니다.</p>
+      </div>
+    </div>
+
+    <div class="col stack-s">
+      <h3>지표 해석 — 숫자가 말하는 것</h3>
+      <div class="tablebox">
+        <table>
+          <thead><tr><th>관찰</th><th>진짜 의미</th><th>조치</th></tr></thead>
+          <tbody>
+            <tr><td>조회↑ 액션↓</td><td>노출은 되는데 선택받지 못함</td><td>사진·리뷰·설명 품질. 순위가 아니라 매력도 문제</td></tr>
+            <tr><td>브랜드 검색만 많음</td><td>신규 발견이 안 됨</td><td>카테고리·서비스 항목 재점검</td></tr>
+            <tr><td>순위↑ 방문 그대로</td><td>무관한 키워드로 잡히는 중</td><td>키워드맵 관련성 재조정</td></tr>
+            <tr><td>경로 요청↑</td><td><strong>가장 좋은 신호</strong> — 실제 방문 의도</td><td>유지</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="fine">순위 확인은 <strong>반드시 시크릿 창</strong>에서, 위치를 우리 도시로 설정하고 합니다. 로그인 상태로 보면 개인화 때문에 실제보다 높게 보입니다. 매장 기준 거리에 따라 순위가 내려가는 것은 정상 동작입니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 체크리스트 ═════════════════════════════════════════════ -->
+<section class="band" id="checklist">
+  <div class="wrap stack-l">
+    <div class="col stack">
+      <div class="eyebrow">06 — 체크리스트</div>
+      <h2>1~2주차, 효과의 60%</h2>
+      <p class="lede">이 화면에서 바로 체크할 수 있습니다. 표시한 내용은 이 브라우저에만 저장됩니다.</p>
+    </div>
+
+    <div class="col">
+      <div class="progress">
+        <span class="progress-track"><span class="progress-fill" id="pb-fill" style="width:0%"></span></span>
+        <span class="progress-num" id="pb-num">0 / 0</span>
+      </div>
+      <div class="checks" id="checks"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 실행 ═══════════════════════════════════════════════════ -->
+<section class="band band--surface" id="run">
+  <div class="wrap stack-l">
+    <div class="col stack">
+      <div class="eyebrow">07 — 실행</div>
+      <h2>명령어 네 개</h2>
+      <p class="lede">지금 무엇을 할 차례인지 헷갈리면 <code>npm run seo:status</code> 하나만 기억하면 됩니다.</p>
+    </div>
+
+    <div class="col cmds">
+      <div class="cmd"><code>npm run seo:init</code><span>사업장 정보 입력 — 질문 13개, 최초 1회</span></div>
+      <div class="cmd"><code>npm run seo:seeds</code><span>키워드 플래너에 넣을 씨앗 키워드 생성 (10개씩 묶음)</span></div>
+      <div class="cmd"><code>npm run seo:score</code><span>플래너 CSV → Tier·채널이 붙은 우선순위표</span></div>
+      <div class="cmd"><code>npm run seo:status</code><span>진행률과 지금 할 일 3개</span></div>
+    </div>
+
+    <div class="col stack-s">
+      <h3>저장소 구조</h3>
+      <div class="filemap">
+        <b>docs/seo/</b><br>
+        &nbsp;&nbsp;<b>RUN-TODAY.md</b> &nbsp;<i>← 오늘 60분 / 이번 주 / 승인 후</i><br>
+        &nbsp;&nbsp;00 알고리즘 · 01 기획 · 02 키워드 · 03 점수모델<br>
+        &nbsp;&nbsp;04 기술SEO · <b>05 구글맵 세팅</b> · 06 운영 · 07 측정 · 08 복합업종<br>
+        &nbsp;&nbsp;<b>checklists/</b> <i>GBP 세팅 · NAP 일관성 · 사진 규격</i><br>
+        <b>templates/gbp-copy/</b> <i>비즈니스 설명 · 리뷰 답글 · 게시물 12주 · Q&amp;A · 인증 동영상 대본 · 서비스 항목</i><br>
+        <b>templates/next-seo/</b> <i>웹사이트가 생기면 쓸 기술 SEO 코드</i><br>
+        <b>tools/seo/</b> <i>프로필 생성기 · 씨앗 생성기 · 점수 산출기 · 현황판</i><br>
+        <b>data/</b> <i>프로필 · 진행상태 · 키워드 원자료</i>
+      </div>
+      <p class="fine">프로필·진행상태·원본 CSV는 <strong>반드시 커밋합니다.</strong> 웹 세션 컨테이너는 매번 초기화되므로, 커밋하지 않으면 입력한 정보와 진행 상황이 사라집니다.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap">
+  <p class="fine col">
+    검색량·CPC 수치는 실측 데이터가 있을 때만 사용합니다. 이 문서의 어떤 도구도 숫자를 지어내지 않으며,
+    Google Keyword Planner 또는 Search Console에서 받은 값만 점수화합니다.
+  </p>
+</footer>
+
+<script>
+  // ─── 점수 계산기 ──────────────────────────────────────────────
+  (function () {
+    var TIER = [
+      { min: 70, name: 'S', cls: 'chip--accent', note: '기본·보조 카테고리 · GBP 설명 첫 문장 · 홈 타이틀' },
+      { min: 50, name: 'A', cls: 'chip--accent', note: 'GBP 서비스 항목 · 랜딩 페이지 1개씩 · 사진 파일명' },
+      { min: 30, name: 'B', cls: 'chip--muted',  note: 'GBP 게시물 로테이션 · 블로그 롱테일 · FAQ' },
+      { min: 0,  name: 'C', cls: 'chip--muted',  note: '보류 — Google Ads 후보로만 검토' }
+    ];
+    var ids = ['c-vol', 'c-max', 'c-comp', 'c-intent', 'c-rel', 'c-lang'];
+    var el = {};
+    ids.forEach(function (id) { el[id] = document.getElementById(id); });
+    var outScore = document.getElementById('out-score');
+    var outTier = document.getElementById('out-tier');
+    var outNote = document.getElementById('out-note');
+    var vVol = document.getElementById('v-vol');
+    var vMax = document.getElementById('v-max');
+    var vComp = document.getElementById('v-comp');
+
+    function fmt(n) { return Number(n).toLocaleString('ko-KR'); }
+
+    function calc() {
+      var vol = Math.max(0, Number(el['c-vol'].value) || 0);
+      var max = Math.max(1, Number(el['c-max'].value) || 1);
+      var comp = Number(el['c-comp'].value) || 0;
+      var intent = Number(el['c-intent'].value);
+      var rel = Number(el['c-rel'].value);
+      var lang = el['c-lang'].checked ? 1.15 : 1;
+
+      vVol.textContent = fmt(vol);
+      vMax.textContent = fmt(max);
+      vComp.textContent = comp;
+
+      var v = Math.min(1, Math.log10(vol + 1) / Math.log10(max + 1));
+      var d = 1 - (comp / 100) * 0.6;
+      var score = Math.min(100, 100 * v * intent * d * rel * lang);
+      var rounded = Math.round(score * 10) / 10;
+
+      var tier = (vol <= 0 || rel <= 0)
+        ? { name: 'X', cls: 'chip--crit', note: '제외 — 실측 수요 없음 또는 우리와 무관' }
+        : TIER.find(function (t) { return rounded >= t.min; });
+
+      outScore.textContent = (vol <= 0 || rel <= 0) ? '—' : rounded;
+      outTier.textContent = tier.name === 'X' ? '제외' : 'Tier ' + tier.name;
+      outTier.className = 'chip ' + tier.cls;
+      outNote.textContent = tier.note;
+    }
+
+    ids.forEach(function (id) {
+      el[id].addEventListener('input', calc);
+      el[id].addEventListener('change', calc);
+    });
+    calc();
+  })();
+
+  // ─── 체크리스트 ───────────────────────────────────────────────
+  (function () {
+    var ITEMS = [
+      { g: '등록·인증', t: '기존 프로필이 있는지 먼저 검색', h: '구글이 자동 생성해둔 것이 있으면 신규 생성이 아니라 소유권 주장' },
+      { g: '등록·인증', t: '상호명 = 실제 간판과 100% 동일', h: '키워드를 끼워넣으면 정지 사유' },
+      { g: '등록·인증', t: '지도 핀을 실제 출입구로 드래그', h: '건물 뒤편에 찍히면 경로 안내가 어긋나 이탈이 생깁니다' },
+      { g: '등록·인증', t: '소유권 확인 동영상 촬영', h: '간판 → 주변 거리 → 출입구 → 내부 → 영업 도구 → 사업자 증빙, 끊김 없이' },
+      { g: '관련성', t: '기본 카테고리 1개 확정', h: '매출 1순위 업종의 가장 좁은 카테고리' },
+      { g: '관련성', t: '보조 카테고리 등록', h: '실제 제공하는 것만. 관련 없는 것은 관련성을 희석시킵니다' },
+      { g: '관련성', t: '비즈니스 설명 750자', h: '첫 100자에 Tier S 키워드 + 도시명' },
+      { g: '관련성', t: '서비스·메뉴 항목 12개 이상', h: '업종별 최소 3개씩. 이름 + 가격 + 300자 설명' },
+      { g: '관련성', t: '속성(Attributes) 전부 채우기', h: '주차·배달·예약·결제수단·한국어 응대' },
+      { g: '관련성', t: '영업시간 + 공휴일 예외 등록', h: '"영업 중" 필터에 직접 쓰입니다' },
+      { g: '사진', t: '사진 20장 촬영', h: '외관은 낮/밤 각각. 가로 촬영, 자연광, 플래시 끄기' },
+      { g: '사진', t: '파일명을 영문 키워드로 변경', h: 'port-moody-korean-restaurant-interior-01.jpg' },
+      { g: '사진', t: '첫 10장 업로드', h: '나머지는 주 2~3장씩 나눠서 — 최신성도 신호입니다' },
+      { g: '인지도', t: 'Q&A 씨앗 5개 등록', h: '2~3일 간격으로 나눠서. 사장이 직접 질문·답변 가능' },
+      { g: '인지도', t: '리뷰 요청 QR 제작·비치', h: '계산대 스탠드 + 영수증. 대가 제공은 금지' },
+      { g: '인지도', t: 'NAP 표준 표기 확정', h: '약어까지 하나로 통일 — St / Street 중 하나만' },
+      { g: '확인', t: '프로필 완성도 100%', h: '관리 화면 상단에 미완료 항목이 0' },
+      { g: '확인', t: '시크릿 창에서 Tier S 키워드 검색', h: '로그인 상태로 보면 실제보다 높게 보입니다' },
+      { g: '확인', t: 'KPI 기준선 기록', h: '남기지 않으면 3개월 뒤 성과를 증명할 수 없습니다' }
+    ];
+    var KEY = 'nonos-gbp-checklist-v1';
+    var box = document.getElementById('checks');
+    var fill = document.getElementById('pb-fill');
+    var num = document.getElementById('pb-num');
+
+    var saved = {};
+    try { saved = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { saved = {}; }
+
+    var lastGroup = null;
+    ITEMS.forEach(function (item, i) {
+      if (item.g !== lastGroup) {
+        var h = document.createElement('div');
+        h.className = 'eyebrow';
+        h.style.margin = '1.25rem 0 .4rem .75rem';
+        h.textContent = item.g;
+        box.appendChild(h);
+        lastGroup = item.g;
+      }
+      var label = document.createElement('label');
+      label.className = 'check';
+      var cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.checked = Boolean(saved[i]);
+      var body = document.createElement('div');
+      body.className = 'check-body';
+      var t = document.createElement('div');
+      t.className = 'check-title';
+      t.textContent = item.t;
+      var how = document.createElement('div');
+      how.className = 'check-how';
+      how.textContent = item.h;
+      body.appendChild(t); body.appendChild(how);
+      label.appendChild(cb); label.appendChild(body);
+      box.appendChild(label);
+
+      cb.addEventListener('change', function () {
+        saved[i] = cb.checked;
+        try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch (e) { /* 저장 불가 환경 — 표시만 유지 */ }
+        update();
+      });
+    });
+
+    function update() {
+      var done = ITEMS.reduce(function (n, _, i) { return n + (saved[i] ? 1 : 0); }, 0);
+      fill.style.width = (done / ITEMS.length * 100) + '%';
+      num.textContent = done + ' / ' + ITEMS.length;
+    }
+    update();
+  })();
+</script>
