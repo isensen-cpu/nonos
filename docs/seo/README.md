@@ -27,19 +27,17 @@
 
 체크리스트: [GBP 세팅](checklists/gbp-setup-checklist.md) · [NAP 일관성](checklists/nap-consistency.md) · [사진 규격](checklists/photo-specs.md)
 
+## 👉 처음이라면 [RUN-TODAY.md](RUN-TODAY.md) 부터
+
+오늘 60분 안에 할 수 있는 것부터 순서대로 정리되어 있습니다.
+
 ## 빠른 시작
 
 ```bash
-# 1) 사업장 정보 작성 (data/business.profile.json 의 <> 부분을 채운다)
-#    verticals 배열의 맨 앞 = 매출 1순위 업종
-
-# 2) 씨앗 키워드 생성 → 키워드 플래너에 붙여넣을 묶음이 만들어진다
-npm run seo:seeds
-cat data/keywords/seeds/README.md
-
-# 3) 플래너에서 받은 CSV를 data/keywords/ 에 넣고 점수화
-npm run seo:score
-cat data/keywords/output/keyword-map.md
+npm run seo:init      # 사업장 정보 입력 (질문 13개)
+npm run seo:seeds     # 키워드 플래너에 넣을 씨앗 키워드 생성
+npm run seo:score     # 플래너 CSV → 우선순위표
+npm run seo:status    # 지금 할 일 3개 + 진행률
 
 # (데이터 없이 동작만 먼저 보고 싶으면 샘플로 실행)
 node tools/seo/score-keywords.mjs --input data/keywords/samples --out /tmp/seo-out \

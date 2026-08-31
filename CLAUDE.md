@@ -95,11 +95,15 @@ types/              # 공통 타입 (Order, Product ...)
 
 | 산출물 | 위치 |
 |--------|------|
-| 알고리즘 분석·기획·실행 문서 8종 | `docs/seo/` ([시작점](docs/seo/README.md)) |
+| **오늘부터 실행 순서** | **`docs/seo/RUN-TODAY.md`** ← 여기부터 |
+| 알고리즘 분석·기획·실행 문서 9종 | `docs/seo/` ([시작점](docs/seo/README.md)) |
 | 구글맵(GBP) 상위노출 세팅 실행서 | `docs/seo/05-google-maps-gbp.md` |
 | 즉시 실행 체크리스트 3종 | `docs/seo/checklists/` |
-| 씨앗 키워드 생성기 | `tools/seo/make-seeds.mjs` (`npm run seo:seeds`) |
-| 키워드 우선순위 산출기 | `tools/seo/score-keywords.mjs` (`npm run seo:score`) |
+| 사업장 프로필 생성기 | `npm run seo:init` |
+| 씨앗 키워드 생성기 | `npm run seo:seeds` |
+| 키워드 우선순위 산출기 | `npm run seo:score` |
+| 실행 현황판 (35개 과제) | `npm run seo:status` |
+| GBP 복붙 문구 템플릿 6종 | `templates/gbp-copy/` |
 | Next.js 기술 SEO 템플릿 | `templates/next-seo/` |
 | 복합 업종·신규 등록 실행서 | `docs/seo/08-multi-vertical-gbp.md` |
 | 사업장 단일 진실 원천 | `data/business.profile.json` |
@@ -108,6 +112,8 @@ types/              # 공통 타입 (Order, Product ...)
 - **검색량·CPC 수치는 지어내지 않는다.** 실측 데이터(Keyword Planner/GSC)가 있을 때만 확정 우선순위표를 만든다.
 - **순위를 자동으로 바꾸는 방법은 없다.** 구글이 읽는 신호를 정확히 채우는 것이 전부다.
 - 상호명 키워드 삽입·대가성 리뷰·가짜 리뷰는 **프로필 정지 사유**이므로 절대 제안하지 않는다.
+- `data/business.profile.json`·`data/progress.json`·`data/keywords/*.csv` 는 **반드시 커밋한다.**
+  웹 세션 컨테이너는 매번 초기화되므로 커밋하지 않으면 입력 정보와 진행 상황이 사라진다.
 
 ---
 

@@ -104,7 +104,7 @@ Q2. 나머지 업종은?
 
 | 시점 | 할 일 | 참조 |
 |---|---|---|
-| **0주** | `data/business.profile.json` 채우기 → `npm run seo:seeds` | 아래 7장 |
+| **0주** | `npm run seo:init` → `npm run seo:seeds` | [RUN-TODAY.md](RUN-TODAY.md) |
 | **0~1주** | 플래너로 씨앗 키워드 조회 → CSV → `npm run seo:score` | `02`, `03` |
 | **1주** | 등록·소유권 확인 신청 (동영상 촬영) | 위 4장 |
 | **2주** | 승인 후 관련성 세팅 100% (카테고리·설명·서비스 12개·속성·사진 20장) | `05` STEP 2 |
@@ -119,9 +119,8 @@ Q2. 나머지 업종은?
 ## 7. 지금 바로 실행
 
 ```bash
-# 1) 프로필의 <> 부분을 실제 값으로 채운다
-#    특히: businessName / city / cityEn / nearbyCityPairs / verticals(매출순) / services
-vi data/business.profile.json
+# 1) 사업장 정보 입력 — 질문에 답하면 프로필이 만들어진다
+npm run seo:init
 
 # 2) 씨앗 키워드 생성 → 플래너 조회용 묶음이 만들어진다
 npm run seo:seeds
